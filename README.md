@@ -35,5 +35,5 @@ The platform also supports session-based authentication, pagination, and profile
 1. **Clone the project**
 
 ```sh
-git clone https://github.com//FLASK-BLOG-PROJECT.git
-cd FLASK-BLOG-PROJECT
+git clone https://github.com/GUFRANHASANSPJ/Blogs.git
+cd BLOGS
