@@ -1,0 +1,22 @@
+{% extends 'base.html'%}
+
+{% block content%}
+
+<h1> blog</h1>
+
+{% for blog in blogs %}
+    <div class="d-flex justify-content-center w-90 h-100">
+            {% if blog.image %}
+            <div class="p-4 w-50 h-50 border rounded shadow bg-light blog-image">
+                <img src="{{ url_for('static', filename='blogs_image/' ~ blog.image) }}" class="img-fluid w-70" style="height: 300px; width:100% ;" alt="...">
+                <h2 class="text-center">{{blog.title}}</h2>
+                <p class="text-center">{{blog.description}}</p>
+
+            </div>
+            {% else %}
+                <p>No image available</p>
+            {% endif %}
+    </div>
+{% endfor %}
+
+{% endblock %}

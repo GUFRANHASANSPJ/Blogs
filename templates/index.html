@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block title %}Home - My Flask App{% endblock %}
+
+{% block content %}
+<style>
+    .blog-image{
+        width: 300px; height: 200px;
+        background-size: cover; 
+        background-position: center;
+    }
+    section{
+        display: flex;
+        flex-wrap: wrap;
+        margin-left: 150px;
+    }
+    a{
+        text-decoration: none;
+        color: black;
+    }
+
+</style>
+
+<br>
+<a href="{{url_for('add_blog')}}">
+    <div class="d-grid gap-2 col-6 mx-auto ">
+        <button class="btn btn-primary" type="button">Create Your blog</button>
+    </div>
+</a>
+<h2 class="text-center my-5">All Blogs</h2>
+<section>
+    {% for blog in blogs %}
+    <div class="d-flex justify-content-center w-50 h-100">
+            {% if blog.image %}
+            <a href="{{ url_for('view_blog',id=blog.id) }}">
+            <div class="p-4 w-75 h-50 border rounded shadow bg-light blog-image">
+                <img src="{{ url_for('static', filename='blogs_image/' ~ blog.image) }}" class="img-fluid w-70" style="height: 300px; width:100% ;" alt="...">
+                <h2 class="text-center">{{blog.title}}</h2>
+                <p class="text-center">{{blog.description}}</p>
+            </div>
+        </a>
+            {% else %}
+                <p>No image available</p>
+            {% endif %}
+    </div>
+    <br>
+    {% endfor %}
+</section>
+<nav aria-label="Page navigation">
+  <ul class="pagination justify-content-center">
+    {% if blogs.has_prev %}
+      <li class="page-item">
+        <a class="page-link" href="{{ url_for('home', page=blogs.prev_num) }}">Previous</a>
+      </li>
+    {% endif %}
+
+    {% for page_num in blogs.iter_pages() %}
+      {% if page_num %}
+        <li class="page-item {% if page_num == blogs.page %}active{% endif %}">
+          <a class="page-link" href="{{ url_for('home', page=page_num) }}">{{ page_num }}</a>
+        </li>
+      {% else %}
+        <li class="page-item disabled"><span class="page-link">...</span></li>
+      {% endif %}
+    {% endfor %}
+
+    {% if blogs.has_next %}
+      <li class="page-item">
+        <a class="page-link" href="{{ url_for('home', page=blogs.next_num) }}">Next</a>
+      </li>
+    {% endif %}
+  </ul>
+</nav>
+{% endblock %}
+

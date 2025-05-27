@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="d-flex justify-content-center my-5">
+    <div class="p-4 w-50 h-50 border rounded shadow bg-light">
+        <h1>Resistration</h1>
+        <form method="POST" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Username</label>
+                <input type="text" name="username" value="{{profile.username}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" disabled>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Email</label>
+                <input type="email" name="email" value="{{ profile.email }}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Phone</label>
+                <input type="text" name="phone" value="{{profile.phone}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+                <label for="image" class="form-label">Upload the image</label>
+                <input type="file" name="image" value="{{profile.image}}" id="image" class="form-control"><br>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

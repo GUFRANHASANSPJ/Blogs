@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content%}
+<div class="container mt-5">
+    <div class="row">
+
+        <div class="col-md-4">
+            <!-- User Profile Image -->
+            {% if user_profile.image %}
+                <img style="height: 200px; width:200px;" src="{{ url_for('static', filename='profile_image/' ~ user_profile.image) }}" alt="Profile Picture" class="img-fluid rounded-circle">
+            {% else %}
+                <p>No image</p>
+            {% endif %}
+        </div>
+        <div class="col-md-8">
+            <!-- User Details -->
+            <h2>{{ user_profile.username}}</h2>
+            <ul class="list-group">
+                <li class="list-group-item"><strong>Phone:</strong> {{ user_profile.phone }}</li>
+                <li class="list-group-item"><strong>Email:</strong> {{ user_profile.email }}</li>
+            </ul>
+            <br>
+             <!-- Edit Profile and Logout Buttons -->
+             <div class="d-flex">
+                <a href="{{url_for('logout')}}" class="btn btn-danger">Logout</a>
+                <a href="{{url_for('edit_profile')}}" class="btn btn-primary ms-3">Edit Profile</a>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+
+{% endblock %}
